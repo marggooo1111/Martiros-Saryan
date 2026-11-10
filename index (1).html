@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Martiros Saryan — The World of Colors</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;500&family=Noto+Serif+Armenian:wght@600&family=Noto+Sans+Armenian:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f5ead6;--terra:#c2562f;--indigo:#12284a;--gold:#d9a441;--turq:#2aa7a1;--p:0;--sf:'Cormorant Garamond','Noto Serif Armenian',Georgia,serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;color:var(--cream);font:16px/1.65 Inter,'Noto Sans Armenian',system-ui,sans-serif;background:hsl(calc(215 - var(--p)*190),55%,15%);transition:background .3s}
+a{color:var(--gold)}
+.glass{background:rgba(245,234,214,.08);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(245,234,214,.18);box-shadow:0 20px 50px -20px #000a,inset 0 1px 0 #fff3}
+header{position:fixed;inset:0 0 auto;z-index:20;padding:calc(10px + env(safe-area-inset-top)) 12px 0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:1100px;margin:auto;padding:8px 16px;border-radius:99px}
+.brand{font:700 20px var(--sf);letter-spacing:.2em;color:var(--gold);text-decoration:none}
+nav{display:flex;gap:18px}
+nav a{color:var(--cream);text-decoration:none;font-size:14px;opacity:.8}
+nav a.on,nav a:hover{color:var(--gold);opacity:1}
+.lang button,#bm{background:none;border:0;color:var(--cream);padding:4px 8px;border-radius:99px;font-size:12px;cursor:pointer}
+.lang button.on{background:var(--gold);color:var(--indigo)}
+#bm{display:none;font-size:20px}
+#mm{position:fixed;inset:0;z-index:15;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:#12284af2;clip-path:circle(0 at 92% 4%);transition:clip-path .5s}
+#mm.open{clip-path:circle(150% at 92% 4%)}
+#mm a{font:600 30px var(--sf);color:var(--cream);text-decoration:none}
+#mm a.on{color:var(--gold)}
+@media(max-width:900px){nav{display:none}#bm{display:block}}
+#pg{position:fixed;top:0;left:0;height:3px;width:0;z-index:30;background:linear-gradient(90deg,var(--terra),var(--gold),var(--turq))}
+#up{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:12;opacity:0;pointer-events:none;transition:.3s;width:44px;height:44px;padding:0}
+#up.on{opacity:1;pointer-events:auto}
+.btn{background:linear-gradient(#e0703f,#c2562f);color:#fff7e8;border:0;border-radius:99px;padding:15px 38px;letter-spacing:.18em;font:500 14px Inter,'Noto Sans Armenian',sans-serif;cursor:pointer;box-shadow:0 6px 0 #8c3a1c,0 18px 30px #0007,inset 0 1px 0 #fff5;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 #8c3a1c,0 8px 14px #0007}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:860px;margin:auto;padding:110px 20px 30px}
+h1,h2{font-family:var(--sf);font-weight:600;line-height:1.05;margin:0 0 .5em}
+.wrap h1{font-size:clamp(38px,7vw,64px);color:var(--gold)}
+p{max-width:68ch}
+.hero{position:relative;height:100svh;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.hero:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,#12284af2,transparent 55%,#12284a80)}
+.nogl{background:linear-gradient(135deg,var(--terra),var(--gold),var(--turq))}.nogl canvas{display:none}
+.txt{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 20px calc(48px + env(safe-area-inset-bottom));text-align:center;display:flex;flex-direction:column;align-items:center;transition:opacity .8s}
+.txt.out{opacity:0}
+.txt h1{font-size:clamp(34px,8vw,92px);letter-spacing:.16em;margin:0}
+.q{font:italic 500 clamp(20px,3vw,30px) var(--sf);color:var(--gold);margin:.4em 0}
+.chip{border-radius:99px;padding:5px 16px;font-size:12px;margin:14px 0 22px}
+.tl{position:relative;padding-left:34px;--f:0}
+.tl:before,.tl:after{content:'';position:absolute;left:7px;top:0;width:2px}
+.tl:before{bottom:0;background:#f5ead633}
+.tl:after{height:calc(var(--f)*100%);background:linear-gradient(var(--gold),var(--terra))}
+.ev{position:relative;padding:14px 18px;border-radius:16px;margin-bottom:18px;opacity:.2;transform:translateX(14px);transition:.7s}
+.ev.in{opacity:1;transform:none}
+.ev:before{content:'';position:absolute;left:-34px;top:20px;width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px #d9a44133}
+.ev b{font:600 26px var(--sf);color:var(--gold)}.ev p{margin:.2em 0 0}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));margin-top:24px}
+.card{padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer;border-radius:14px;overflow:hidden;transition:transform .15s,box-shadow .3s;box-shadow:0 22px 40px -18px #000}
+.card .cap{padding:10px 14px;background:#0005}
+.tile{position:relative;aspect-ratio:4/3;overflow:hidden;border:9px solid #c9993a;box-shadow:inset 0 0 14px #000a}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+#md{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;overflow:auto;background:#050a19e6}
+#md.on{display:flex}
+.mb{display:grid;gap:20px;grid-template-columns:1.3fr 1fr;max-width:1100px;width:100%;transform:scale(.7);opacity:0;transition:.55s cubic-bezier(.2,.8,.2,1)}
+#md.in .mb{transform:none;opacity:1}
+.mb .glass{padding:22px;border-radius:18px}
+dl{margin:12px 0}dt{font-size:12px;color:var(--gold);margin-top:8px}dd{margin:0}
+.ctl{display:flex;gap:10px}.ctl button{background:#f5ead622;border:0;color:var(--cream);width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer}
+@media(max-width:760px){.mb{grid-template-columns:1fr}}
+.mc{position:absolute;z-index:2;left:0;right:0;bottom:calc(30px + env(safe-area-inset-bottom));display:flex;justify-content:center;align-items:center;gap:14px;padding:0 12px}
+.mc button{background:#f5ead633;border:0;color:var(--cream);width:46px;height:46px;border-radius:50%;font-size:24px;cursor:pointer}
+.mc span{font:600 20px var(--sf);text-align:center;max-width:60vw}
+.mh{position:absolute;z-index:2;top:92px;left:0;right:0;text-align:center;font-size:13px;opacity:.8;margin:auto}
+footer ul{padding-left:18px;font-size:14px}footer h2{font-size:28px}footer{border-top:1px solid #f5ead622}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="pg"></div>
+<header><div class="bar glass"><a class="brand" href="#/" data-r="0">SARYAN</a><nav></nav><div style="display:flex;gap:8px;align-items:center"><div class="lang"></div><button id="bm" aria-label="Menu">☰</button></div></div></header>
+<div id="mm"></div>
+<div id="app"></div>
+<button id="up" class="btn" aria-label="Up">↑</button>
+<div id="md"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ---------- DATA ---------- */
+const R=['','biography','life','paintings','style','legacy','museum'];
+const Y=['1880','1891','1895','1897–1904','1910–1913','1916','1926–1928','1928–1972'];
+const PAL=[0xc2562f,0xd9a441,0x2aa7a1,0xb3202a,0x6b7a3a,0xf5ead6];
+const WM='https://upload.wikimedia.org/wikipedia/commons/';
+// img: путь файла на Wikimedia Commons (хэш/хэш/имя). Все работы созданы до 1929 года; лицензия указана на странице каждого файла.
+const fn=p=>p.img.split('/')[2],bs=p=>{const a=p.img.split('/');return a[0]+'/'+a[1]+'/'+encodeURI(a[2])};
+const U0=p=>WM+bs(p),U1=p=>WM+'thumb/'+bs(p)+'/960px-'+encodeURI(fn(p));
+const P=[
+ {y:1908,img:'2/29/By_the_Well._Hot_Day,_1908.jpg',c:['#d9a441','#b3202a']},
+ {y:1910,tm:1,s:'66.2 × 39',tg:1,c:['#2aa7a1','#d9a441']},
+ {y:1910,tg:1,img:'5/5e/1910._Константинопольские_собаки.jpg',c:['#c2562f','#d9a441']},
+ {y:1911,tm:1,s:'106.8 × 71',tg:1,img:'d/d7/1911._Финиковая_пальма._Египет.jpg',c:['#6b7a3a','#d9a441']},
+ {y:1911,img:'9/98/Египетские_маски.jpeg',c:['#c2562f','#12284a']},
+ {y:1914,img:'3/32/Martiros_Saryan,_Flowers_from_Kalaki,_1914.jpg',c:['#b3202a','#6b7a3a']},
+ {y:1923,c:['#2aa7a1','#c2562f']}];
+const S=[['Wikipedia — Martiros Saryan','https://en.wikipedia.org/wiki/Martiros_Saryan'],['Britannica — Martiros Saryan','https://www.britannica.com/biography/Martiros-Saryan'],['Artchive — Martiros Saryan','https://artchive.ru/en/martirossaryan'],['Armeniapedia — Martiros Sarian','https://armeniapedia.org/wiki/Martiros_Sarian'],['Tretyakov Gallery, exhibition 2017 (artinvestment.ru)','https://ftp.artinvestment.ru/en/news/exhibitions/20171116_martiros_saryan_exhibition_in_tretyakov_gallery.html'],['Martiros Saryan House-Museum','https://www.sarian.am/htmls_eng/sarian_works_main.html'],['Wikimedia Commons','https://commons.wikimedia.org/']];
+
+const L={
+ru:{nav:['Главная','Биография','Личная жизнь','Картины','Стиль и цвет','Наследие','3D-музей'],
+q:'«Цвет — это сама жизнь».',sub:'Армянский художник, мастер цвета и создатель неповторимого художественного мира.',born:'Нор-Нахичевань — Ереван',enter:'ВОЙТИ В МУЗЕЙ',
+bio:['Родился 28 февраля (16 февраля по ст. ст.) в Нахичевани-на-Дону в армянской семье, седьмым ребёнком. Детство прошло на отцовском хуторе в донской степи.','Умер отец; о семье стал заботиться старший брат Ованнес, который раньше учил Мартироса письму и счёту.','Окончил русско-армянское училище Нового Нахичевана.','Учился в Московском училище живописи, ваяния и зодчества у Валентина Серова и Константина Коровина; участвовал в выставке «Голубая роза».','Поездки: Константинополь (1910), Египет (1911), Персия (1913). Египетский цикл имел успех на выставке в Риме осенью 1911 года.','17 апреля женился на Лусик Агаян.','Жил и работал в Париже; большинство работ этого времени погибло при пожаре на судне, на котором он возвращался.','Жил в Советской Армении: картины, графика, театральные работы («Алмаст», 1939). Умер в Ереване 5 мая 1972 года в возрасте 92 лет; похоронен в Пантеоне Комитаса.'],
+life:['Родители — Саргис Сарьян и Устиан Чилингарян; Мартирос был седьмым ребёнком. Годы на хуторе сильно повлияли на его любовь к природе — об этом он пишет в автобиографии.','Жена — Лусик Агаян, дочь известного армянского писателя Газароса Агаяна. Они познакомились в Тбилиси и поженились 17 апреля 1916 года.','Сыновья — Саргис и Газарос; Газарос Сарьян стал композитором и педагогом. Правнучка художника Мариам Петросян — тоже художница и писательница.'],
+note:'Подтверждённых надёжными воспоминаниями сведений о характере, привычках и личных интересах здесь пока нет: раздел будет дополнен после сверки с источниками.',
+style:['Сарьян учился у Серова и Коровина; на его живопись повлияли также Гоген и Матисс, черпавшие вдохновение на Востоке.','Поворотную роль сыграли поездки на Восток — Константинополь, Египет, Персия — и Армения, где он искал вдохновение в родной земле.','Его считают основателем современной армянской национальной школы живописи; ему приписывают возрождение в пейзаже и натюрморте цветовых решений средневековой армянской книжной миниатюры.','Многие работы выполнены темперой на картоне — например, «Финиковая пальма. Египет».'],
+leg:['Народный художник СССР (1960), Герой Социалистического Труда, лауреат Ленинской премии, трижды кавалер ордена Ленина.','Президент Союза художников Советской Армении (1945–1951), член Академии художеств СССР и (с 1956) Академии наук Армении; создал герб Армянской ССР и занавес первого государственного театра Армении.','За долгую творческую жизнь создал около 4000 произведений: живопись, графику, книжные иллюстрации, театральные и монументальные работы.','Бывший дом художника в Ереване — Дом-музей Мартироса Сарьяна (ул. Сарьяна, 3): мастерская, пристроенный выставочный зал, сотни экспонатов.','Похоронен в Пантеоне Комитаса в Ереване, рядом с Комитасом.'],
+pt:['У колодца. Жаркий день','Улица. Полдень. Константинополь','Константинопольские собаки','Финиковая пальма. Египет','Египетские маски','Цветы Калаки','Армения'],
+pd:['Ранняя работа художника.','Показана на выставке Московского товарищества художников в 1910 году и приобретена Третьяковской галереей — редкий случай покупки работы молодого автора.','Связана с поездкой в Константинополь в 1910 году; находится в Третьяковской галерее.','Связана с поездкой художника в Египет в 1911 году.','Принадлежит к египетскому циклу, имевшему большой успех на выставке в Риме осенью 1911 года.','Датируется 1914 годом.','Написана в годы работы художника в первом государственном театре Армении; воспроизведена на банкноте в 20 000 драмов (1999).'],
+lab:['Год','Техника','Размер','Место хранения'],tm:'Темпера, картон',cm:'см',tg:'Государственная Третьяковская галерея, Москва',tbd:'уточняется по музейному каталогу',ph:'Репродукция будет добавлена',
+src:'Источники и литература',sn:'Сведения сверены с этими источниками; по спорным данным обращайтесь к музейным каталогам. Изображения — Wikimedia Commons; лицензия указана на странице каждого файла.',mh:'Тяните, чтобы осмотреться; нажмите на картину',nogl:'3D-режим недоступен в этом браузере — показана плоская галерея.'},
+hy:{nav:['Գլխավոր','Կենսագրություն','Անձնական կյանք','Նկարներ','Ոճ և գույն','Ժառանգություն','3D թանգարան'],
+q:'«Գույնը հենց կյանքն է»։',sub:'Հայ նկարիչ, գույնի վարպետ և եզակի գեղարվեստական աշխարհի ստեղծող։',born:'Նոր Նախիջևան — Երևան',enter:'ՄՏՆԵԼ ԹԱՆԳԱՐԱՆ',
+bio:['Ծնվել է 1880 թ. փետրվարի 28-ին (հին տոմարով՝ 16-ին) Նոր Նախիջևանում՝ հայ ընտանիքում, յոթերորդ երեխան։ Մանկությունն անցել է հոր ագարակում՝ Դոնի տափաստանում։','Մահացավ հայրը. ընտանիքի հոգսը ստանձնեց քսան տարով մեծ եղբայրը՝ Հովհաննեսը, որն արդեն սովորեցրել էր նրան գրել և հաշվել։','Ավարտեց Նոր Նախիջևանի ռուս-հայկական ուսումնարանը։','Սովորեց Մոսկվայի գեղանկարչության, քանդակագործության և ճարտարապետության ուսումնարանում՝ Վալենտին Սերովի և Կոնստանտին Կորովինի մոտ. մասնակցեց «Կապույտ վարդ» ցուցահանդեսին։','Ուղևորություններ՝ Կոստանդնուպոլիս (1910), Եգիպտոս (1911), Պարսկաստան (1913)։ Եգիպտական շարքը 1911 թ. աշնանը մեծ հաջողություն ունեցավ Հռոմի ցուցահանդեսում։','Ապրիլի 17-ին ամուսնացավ Լուսիկ Աղայանի հետ։','Ապրել և աշխատել է Փարիզում. այդ շրջանի գործերի մեծ մասը ոչնչացավ վերադարձի նավի հրդեհում։','Ապրել է Խորհրդային Հայաստանում. գեղանկարներ, գրաֆիկա, թատերական աշխատանքներ («Ալմաստ», 1939)։ Մահացել է Երևանում 1972 թ. մայիսի 5-ին՝ 92 տարեկանում, թաղված է Կոմիտասի պանթեոնում։'],
+life:['Ծնողները՝ Սարգիս Սարյանը և Ուստիան Չիլինգարյանը։ Ագարակում անցկացրած տարիները խորապես ազդել են բնության հանդեպ նրա սիրո վրա. այդ մասին նա գրում է իր ինքնակենսագրության մեջ։','Կինը՝ Լուսիկ Աղայանը, նշանավոր գրող Ղազարոս Աղայանի դուստրն էր։ Նրանք ծանոթացել են Թիֆլիսում և ամուսնացել 1916 թ. ապրիլի 17-ին։','Որդիներն են Սարգիսը և Ղազարոսը. Ղազարոս Սարյանը կոմպոզիտոր և մանկավարժ էր։ Նկարչի ծոռնուհին՝ Մարիամ Պետրոսյանը, նույնպես նկարիչ և գրող է։'],
+note:'Բնավորության, սովորությունների և անձնական հետաքրքրությունների մասին հավաստի հիշողություններով հաստատված տվյալներ դեռ չկան. բաժինը կլրացվի աղբյուրների ստուգումից հետո։',
+style:['Սարյանը սովորել է Սերովից և Կորովինից. նրա գեղանկարչության վրա ազդել են նաև Գոգենն ու Մատիսը, որոնք ոգեշնչում էին փնտրում Արևելքում։','Շրջադարձային դեր խաղացին արևելյան ուղևորությունները՝ Կոստանդնուպոլիս, Եգիպտոս, Պարսկաստան, ինչպես նաև Հայաստանը, որտեղ նա ոգեշնչում էր փնտրում հայրենի երկրում։','Նրան համարում են արդի հայկական ազգային գեղանկարչական դպրոցի հիմնադիրը. վերագրում են միջնադարյան հայկական մանրանկարչության գունային լուծումների վերածնունդը բնանկարում և նատյուրմորտում։','Շատ գործեր կատարված են տեմպերայով՝ ստվարաթղթի վրա, օրինակ՝ «Արմավենի. Եգիպտոս»։'],
+leg:['ԽՍՀՄ ժողովրդական նկարիչ (1960), Սոցիալիստական աշխատանքի հերոս, Լենինյան մրցանակի դափնեկիր, Լենինի շքանշանի եռակի ասպետ։','Խորհրդային Հայաստանի նկարիչների միության նախագահ (1945–1951), ԽՍՀՄ Գեղարվեստի ակադեմիայի անդամ, Հայաստանի ԳԱ անդամ (1956). ստեղծել է Հայկական ԽՍՀ զինանշանը և առաջին պետական թատրոնի վարագույրը։','Երկար ստեղծագործական կյանքում ստեղծել է շուրջ 4000 գործ՝ գեղանկարչություն, գրաֆիկա, գրքի նկարազարդումներ, թատերական և մոնումենտալ աշխատանքներ։','Նկարչի նախկին տունը Երևանում այժմ Մարտիրոս Սարյանի տուն-թանգարանն է (Սարյան փող. 3)՝ արվեստանոցով, կից ցուցասրահով և հարյուրավոր ցուցանմուշներով։','Թաղված է Երևանի Կոմիտասի պանթեոնում՝ Կոմիտասի կողքին։'],
+pt:['Ջրհորի մոտ. Շոգ օր','Փողոց. Կեսօր. Կոստանդնուպոլիս','Կոստանդնուպոլսի շները','Արմավենի. Եգիպտոս','Եգիպտական դիմակներ','Կալակի ծաղիկները','Հայաստան'],
+pd:['Նկարչի վաղ շրջանի գործ։','Ցուցադրվել է Մոսկվայի նկարիչների ընկերության 1910 թ. ցուցահանդեսում և ձեռք է բերվել Տրետյակովյան պատկերասրահի կողմից. երիտասարդ հեղինակի համար դա հազվադեպ դեպք էր։','Կապված է 1910 թ. Կոստանդնուպոլիս կատարած ուղևորության հետ. գտնվում է Տրետյակովյան պատկերասրահում։','Կապված է նկարչի 1911 թ. Եգիպտոս կատարած ուղևորության հետ։','Պատկանում է եգիպտական շարքին, որը 1911 թ. աշնանը մեծ հաջողություն ունեցավ Հռոմի ցուցահանդեսում։','Թվագրվում է 1914 թ.։','Գրվել է նկարչի՝ Հայաստանի առաջին պետական թատրոնում աշխատելու տարիներին. վերարտադրված է 20 000 դրամանոց թղթադրամի վրա (1999)։'],
+lab:['Տարի','Տեխնիկա','Չափս','Պահվում է'],tm:'Տեմպերա, ստվարաթուղթ',cm:'սմ',tg:'Պետական Տրետյակովյան պատկերասրահ, Մոսկվա',tbd:'ճշտվում է թանգարանային կատալոգով',ph:'Վերարտադրությունը կավելացվի',
+src:'Աղբյուրներ և գրականություն',sn:'Տվյալները համադրվել են այս աղբյուրների հետ. վիճելի դեպքերում դիմեք թանգարանային կատալոգներին։ Պատկերները՝ Wikimedia Commons, լիցենզիան նշված է յուրաքանչյուր ֆայլի էջում։',mh:'Քաշեք՝ շուրջը նայելու համար. սեղմեք նկարի վրա',nogl:'Այս դիտարկիչում 3D ռեժիմը հասանելի չէ. ցուցադրվում է հարթ պատկերասրահը։'},
+en:{nav:['Home','Biography','Personal life','Paintings','Style & color','Legacy','3D museum'],
+q:'“Color is life itself.”',sub:'Armenian painter, master of color and creator of a world of his own.',born:'Nor Nakhichevan — Yerevan',enter:'ENTER THE MUSEUM',
+bio:['Born on 28 February (16 February, Old Style) in Nakhichevan-on-Don into an Armenian family, the seventh child. His childhood was spent on his father’s farmstead in the Don steppe.','His father died; his elder brother Hovhannes, who had taught him to write and count, took on the care of the family.','Finished the Russian-Armenian school of New Nakhichevan.','Studied at the Moscow School of Painting, Sculpture and Architecture under Valentin Serov and Konstantin Korovin; took part in the Blue Rose exhibition.','Travels: Constantinople (1910), Egypt (1911), Persia (1913). The Egyptian cycle was a success at a Rome exhibition in autumn 1911.','Married Lusik Aghayan on 17 April.','Lived and worked in Paris; most works of this period were lost in a fire aboard the ship on which he returned.','Lived in Soviet Armenia: paintings, graphics, theater work (“Almast”, 1939). Died in Yerevan on 5 May 1972, aged 92; buried at the Komitas Pantheon.'],
+life:['His parents were Sargis Saryan and Ustian Chiligaryan; Martiros was the seventh child. The years on the farmstead deeply shaped his love of nature, as he writes in his autobiography.','His wife, Lusik Aghayan, was the daughter of the noted Armenian writer Ghazaros Aghayan. They met in Tbilisi and married on 17 April 1916.','Their sons were Sargis and Ghazaros; Ghazaros Saryan became a composer and teacher. The painter’s great-granddaughter Mariam Petrosyan is also a painter and novelist.'],
+note:'There is not yet any information on his character, habits or personal interests confirmed by reliable memoirs; this section will be extended after source checking.',
+style:['Saryan studied under Serov and Korovin; Gauguin and Matisse, who drew inspiration from the East, also influenced his painting.','Journeys to the East — Constantinople, Egypt, Persia — played a turning-point role, as did Armenia, where he sought inspiration in his homeland.','He is regarded as the founder of the modern Armenian national school of painting, credited with reviving the color schemes of medieval Armenian manuscript illumination in landscape and still life.','Many works are in tempera on cardboard, for example “Date Palm. Egypt”.'],
+leg:['People’s Artist of the USSR (1960), Hero of Socialist Labour, Lenin Prize laureate, three-time holder of the Order of Lenin.','President of the Artists’ Union of Soviet Armenia (1945–1951), member of the USSR Academy of Arts and (from 1956) the Armenian Academy of Sciences; created the coat of arms of the Armenian SSR and the curtain of Armenia’s first state theater.','Over a long career he made about 4,000 works: paintings, graphics, book illustrations, theater and monumental designs.','The artist’s former home in Yerevan is the Martiros Saryan House-Museum (3 Saryan St.): his studio, an attached exhibition hall and hundreds of items.','He is buried at the Komitas Pantheon in Yerevan, beside Komitas.'],
+pt:['By the Well. Hot Day','Street. Noon. Constantinople','Constantinople. Dogs','Date Palm. Egypt','Egyptian Masks','Flowers from Kalaki','Armenia'],
+pd:['An early work by the artist.','Shown at the Moscow Association of Artists exhibition in 1910 and acquired by the Tretyakov Gallery — a rare purchase of a young artist’s work.','Connected with the 1910 trip to Constantinople; held by the Tretyakov Gallery.','Connected with the artist’s 1911 trip to Egypt.','Part of the Egyptian cycle, a great success at a Rome exhibition in autumn 1911.','Dated 1914.','Painted while he worked at Armenia’s first state theater; reproduced on the 20,000-dram banknote (1999).'],
+lab:['Year','Technique','Size','Collection'],tm:'Tempera on cardboard',cm:'cm',tg:'State Tretyakov Gallery, Moscow',tbd:'to be confirmed from the museum catalogue',ph:'Reproduction to be added',
+src:'Sources and literature',sn:'Facts were checked against these sources; consult museum catalogues for disputed details. Images: Wikimedia Commons; the license is shown on each file page.',mh:'Drag to look around; tap a painting',nogl:'3D mode is unavailable in this browser — showing the flat gallery.'}};
+
+/* ---------- STATE / HELPERS ---------- */
+let lang=(()=>{try{return localStorage.getItem('lang')||'ru'}catch(e){return'ru'}})();
+if(!L[lang])lang='ru';
+let stop=()=>{},enterFn=()=>{},cur=0,route=0;
+const fromHash=()=>{const i=R.indexOf(location.hash.replace(/^#\/?/,''));return i<0?0:i};
+const $=s=>document.querySelector(s),T=()=>L[lang];
+const hasGL=()=>{try{const c=document.createElement('canvas');return!!(c.getContext('webgl')||c.getContext('experimental-webgl'))}catch(e){return false}};
+const bg=p=>`background:linear-gradient(135deg,${p.c[0]},${p.c[1]})`;
+const im=p=>p.img?`<img src="${U1(p)}" alt="" loading="lazy" onload="this.parentNode.style.background='#1a1424'" onerror="this.onerror=function(){this.remove()};this.src='${U0(p)}'">`:'';
+const gallery=()=>`<div class="grid">${P.map((p,j)=>`<button class="card" data-i="${j}"><div class="tile" style="${bg(p)}">${im(p)}</div><div class="cap"><b>${T().pt[j]}</b><br><small>${p.y}</small></div></button>`).join('')}</div>`;
+const mk=(par,g,col,x,y,z)=>{const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:col,roughness:.8}));m.position.set(x,y,z);par.add(m);return m};
+const foot=()=>`<footer class="wrap" style="padding-top:30px"><h2>${T().src}</h2><ul>${S.map(a=>`<li><a href="${a[1]}" target="_blank" rel="noopener">${a[0]}</a></li>`).join('')}</ul><p style="font-size:14px;opacity:.8">${T().sn}</p></footer>`;
+
+/* ---------- 3D ---------- */
+function setup(cv,col,fov){
+  const r=new THREE.WebGLRenderer({canvas:cv,antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,1.75));
+  const s=new THREE.Scene();s.background=new THREE.Color(col);
+  const c=new THREE.PerspectiveCamera(fov,1,.1,60);
+  const rs=()=>{r.setSize(cv.clientWidth,cv.clientHeight,false);c.aspect=cv.clientWidth/cv.clientHeight;c.updateProjectionMatrix()};
+  rs();addEventListener('resize',rs);let id,run=1;
+  const loop=f=>{const k=t=>{if(!run)return;f(t/1000);r.render(s,c);id=requestAnimationFrame(k)};id=requestAnimationFrame(k)};
+  stop=()=>{run=0;cancelAnimationFrame(id);removeEventListener('resize',rs);r.dispose()};
+  return{s,c,loop};
+}
+
+function hero(cv){
+  const{s,c,loop}=setup(cv,0x12284a,40);s.fog=new THREE.Fog(0x12284a,9,18);
+  s.add(new THREE.AmbientLight(0xffffff,.75));const dl=new THREE.DirectionalLight(0xffe2b0,.9);dl.position.set(4,6,5);s.add(dl);
+  const pl=new THREE.PointLight(0xffaa66,1,14);s.add(pl);
+  const B=THREE.BoxGeometry,Pl=THREE.PlaneGeometry,Cy=THREE.CylinderGeometry,Sp=THREE.SphereGeometry;
+  mk(s,new Pl(30,30),0x8c4a2b,0,0,0).rotation.x=-Math.PI/2;
+  mk(s,new Pl(30,10),0x1b3a66,0,4,-2.6);
+  [-1,1].forEach(q=>mk(s,new B(.1,3,.1),0x5a3a22,q*.9,1.4,-.25));
+  mk(s,new B(2.7,.1,.25),0x5a3a22,0,.7,0);mk(s,new B(2.5,1.7,.06),0xf5ead6,0,1.6,0);
+  [-3.6,3.6].forEach((x,i)=>{mk(s,new B(1.8,1.3,.1),0xd9a441,x,2.6,-2.55);[0,1,2].forEach(j=>mk(s,new Pl(1.6,.38),PAL[(i*3+j+1)%6],x,3-j*.4,-2.49))});
+  let sd=7;const rn=()=>(sd=sd*16807%2147483647)/2147483647;
+  const N=22,ST=[];
+  for(let i=0;i<N;i++){const w=.4+rn()*.7,g=new THREE.Group(),x=-1.1+rn()*(2.2-w),y=1.1+rn(),r=(rn()-.5)*.6;
+    g.position.set(x,y,.04+i*.0015);g.rotation.z=r;s.add(g);mk(g,new Pl(w,.1+rn()*.2),PAL[i%6],w/2,0,0);g.scale.x=.0001;ST.push({g,x,y,w,r})}
+  const A=new THREE.Group();A.position.set(-1.5,0,1);A.rotation.y=2.16;s.add(A);
+  [-.17,.17].forEach(x=>mk(A,new Cy(.11,.11,.95,12),0x2a2a3a,x,.5,0));
+  mk(A,new Cy(.28,.3,1,16),0xc2562f,0,1.35,0);mk(A,new Sp(.22,20,14),0xe0b08c,0,2.02,0);
+  mk(A,new Sp(.27,20,14),0x7a1620,0,2.2,0).scale.y=.35;mk(A,new Cy(.07,.07,.7,8),0xc2562f,.36,1.2,0);
+  const arm=new THREE.Group();arm.position.set(-.3,1.7,0);A.add(arm);
+  const lim=(r,h,col,z)=>{mk(arm,new Cy(r,r,h,8),col,0,0,z).rotation.x=Math.PI/2};
+  lim(.07,1.1,0xc2562f,.55);lim(.015,.5,0x5a3a22,1.35);mk(arm,new Sp(.08,10,10),0xe0b08c,0,0,1.1);mk(arm,new Sp(.04,8,8),0xd9a441,0,0,1.62);
+  const pg=new THREE.BufferGeometry(),pp=[],pc=[];
+  for(let i=0;i<160;i++){pp.push((rn()-.5)*7,rn()*3.5+.3,(rn()-.5)*4);const k=new THREE.Color(PAL[i%6]);pc.push(k.r,k.g,k.b)}
+  pg.setAttribute('position',new THREE.Float32BufferAttribute(pp,3));pg.setAttribute('color',new THREE.Float32BufferAttribute(pc,3));
+  const pts=new THREE.Points(pg,new THREE.PointsMaterial({size:.07,vertexColors:true,transparent:true,opacity:.85}));s.add(pts);
+  let go=0,mx=0,my=0;const mv=e=>{mx=e.clientX/innerWidth*2-1;my=-(e.clientY/innerHeight*2-1)};
+  addEventListener('pointermove',mv);const o=stop;stop=()=>{o();removeEventListener('pointermove',mv)};
+  const tg=new THREE.Vector3(),sh=new THREE.Vector3(),goal=new THREE.Vector3();
+  loop(t=>{
+    const k=(t%30)/24*N;ST.forEach((q,i)=>{q.g.scale.x=Math.max(.0001,Math.min(1,Math.max(0,k-i)))});
+    const n=Math.min(N-1,k|0),p=Math.min(1,Math.max(0,k-n)),q=ST[n];
+    tg.set(q.x+Math.cos(q.r)*q.w*p,q.y+Math.sin(q.r)*q.w*p+Math.sin(t*9)*.03,.12);
+    arm.getWorldPosition(sh);arm.lookAt(tg);arm.scale.z=Math.min(1.6,Math.max(.6,sh.distanceTo(tg)/1.7));
+    pts.rotation.y=t*.05;pl.position.set(c.position.x*1.5,3.2,3);pl.color.setHSL(.08+.06*Math.sin(t*.4),.8,.6);
+    goal.set(go?0:.6+mx*.8,go?1.6:1.9+my*.3,go?1.2:(innerWidth<700?8.5:5.8));c.position.lerp(goal,go?.035:.05);c.lookAt(0,1.5,0);
+  });
+  enterFn=()=>{go=1};
+}
+
+function museum(cv){
+  const{s,c,loop}=setup(cv,0x1a1424,55);
+  s.add(new THREE.AmbientLight(0xffffff,.85));const dl=new THREE.DirectionalLight(0xffe2b0,.7);dl.position.set(0,6,6);s.add(dl);
+  const n=P.length,GAP=3.4,W=n*GAP+6;
+  mk(s,new THREE.PlaneGeometry(W,14),0x6b4a2e,0,0,0).rotation.x=-Math.PI/2;
+  mk(s,new THREE.PlaneGeometry(W,6),0xe9dcc3,0,3,-4);
+  const fr=[],ray=new THREE.Raycaster(),m2=new THREE.Vector2();
+  P.forEach((p,j)=>{
+    const x=(j-(n-1)/2)*GAP;mk(s,new THREE.BoxGeometry(2.4,1.7,.12),0xc9993a,x,1.8,-3.94);
+    const k=document.createElement('canvas');k.width=320;k.height=220;const g=k.getContext('2d'),gr=g.createLinearGradient(0,0,320,220);
+    gr.addColorStop(0,p.c[0]);gr.addColorStop(1,p.c[1]);g.fillStyle=gr;g.fillRect(0,0,320,220);
+    const m=new THREE.Mesh(new THREE.PlaneGeometry(2.1,1.4),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(k)}));
+    m.position.set(x,1.8,-3.87);m.userData.j=j;s.add(m);fr.push(m);
+    if(p.img){const ld=new THREE.TextureLoader();ld.setCrossOrigin('anonymous');
+      const ok=t2=>{m.material.map=t2;m.material.needsUpdate=true;const a=t2.image.width/t2.image.height;m.scale.set(a>1.5?1:a/1.5,a>1.5?1.5/a:1,1)};
+      ld.load(U1(p),ok,undefined,()=>ld.load(U0(p),ok,undefined,()=>{}))}
+  });
+  let f=0,yaw=0,dx=null,mvd=0;
+  window.mgo=d=>{f=(f+d+n)%n;$('#cap').textContent=T().pt[f]};window.mgo(0);
+  cv.onpointerdown=e=>{dx=e.clientX;mvd=0};
+  cv.onpointermove=e=>{if(dx!==null){const d=e.clientX-dx;mvd+=Math.abs(d);yaw=Math.max(-.9,Math.min(.9,yaw-d*.004));dx=e.clientX}};
+  cv.onpointerup=e=>{dx=null;if(mvd<6){const r=cv.getBoundingClientRect();m2.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height*2-1));ray.setFromCamera(m2,c);const h=ray.intersectObjects(fr)[0];if(h)openM(h.object.userData.j)}};
+  c.position.set(0,1.7,1.4);
+  loop(()=>{const x=(f-(n-1)/2)*GAP;c.position.x+=(x-c.position.x)*.06;c.lookAt(c.position.x+yaw*4,1.7,-4)});
+}
+
+/* ---------- PAGES ---------- */
+const sec=(i,b)=>`<main class="wrap"><h1>${T().nav[i]}</h1>${b}</main>`;
+const ps=a=>a.map(t=>`<p>${t}</p>`).join('');
+const pg=[
+ ()=>`<section class="hero" id="hero"><canvas id="gl"></canvas><div class="txt"><h1>MARTIROS SARYAN</h1><p class="q">${T().q}</p><p style="margin:0;font-size:15px;opacity:.9">${T().sub}</p><p class="chip glass">1880 — 1972 · ${T().born}</p><button class="btn" id="go">${T().enter}</button></div></section>`,
+ ()=>sec(1,`<div class="tl">${Y.map((y,j)=>`<div class="ev glass"><b>${y}</b><p>${T().bio[j]}</p></div>`).join('')}</div>`),
+ ()=>sec(2,ps(T().life)+`<p class="glass" style="padding:14px 18px;border-radius:14px;font-size:14px">${T().note}</p>`),
+ ()=>sec(3,gallery()),
+ ()=>sec(4,ps(T().style)),
+ ()=>sec(5,ps(T().leg)),
+ ()=>`<section class="hero" id="hero"><canvas id="gl"></canvas><p class="mh">${T().mh}</p><div class="mc"><button onclick="mgo(-1)" aria-label="‹">‹</button><span id="cap"></span><button onclick="mgo(1)" aria-label="›">›</button></div></section>`];
+const aft=[
+ ()=>{let live=false;const h=$('#hero');
+  $('#go').onclick=()=>{if(!live){go(6);return}enterFn();$('.txt').classList.add('out');setTimeout(()=>{if(route==0)go(6)},1700)};
+  try{if(!hasGL()||typeof THREE==='undefined')throw 0;hero($('#gl'));live=true}catch(e){stop();stop=()=>{};h.classList.add('nogl')}},
+ ()=>{const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.2});document.querySelectorAll('.ev').forEach(e=>io.observe(e))},
+ 0,0,0,0,
+ ()=>{try{if(!hasGL()||typeof THREE==='undefined')throw 0;museum($('#gl'))}catch(e){stop();stop=()=>{};$('#hero').outerHTML=sec(6,`<p>${T().nogl}</p>`+gallery())}}];
+
+function go(i){route=i;try{if(location.hash!=='#/'+R[i])location.hash='#/'+R[i]}catch(e){}closeM();render(true)}
+function render(top){
+  stop();stop=()=>{};
+  const i=route;
+  $('#app').innerHTML=pg[i]()+foot();
+  $('nav').innerHTML=$('#mm').innerHTML=R.map((r,j)=>`<a href="#/${r}" data-r="${j}" class="${j==i?'on':''}">${T().nav[j]}</a>`).join('');
+  $('.lang').innerHTML=['hy','ru','en'].map(l=>`<button data-l="${l}" class="${l==lang?'on':''}">${{hy:'ՀԱՅ',ru:'РУС',en:'ENG'}[l]}</button>`).join('');
+  document.documentElement.lang=lang;$('#mm').classList.remove('open');
+  if(top)scrollTo({top:0,behavior:'instant'});
+  if(aft[i])aft[i]();onScroll();
+}
+
+/* ---------- MODAL ---------- */
+function openM(j){
+  cur=(j+P.length)%P.length;const p=P[cur],X=T(),md=$('#md');
+  const sz=p.s?p.s.replace('.',lang=='ru'?',':'.')+' '+X.cm:X.tbd;
+  md.innerHTML=`<div class="mb"><div><div class="tile" style="${bg(p)};aspect-ratio:4/3">${im(p)}</div><small style="opacity:.7">${p.img?`<a href="https://commons.wikimedia.org/wiki/File:${encodeURI(fn(p))}" target="_blank" rel="noopener">Wikimedia Commons</a>`:X.ph}</small></div><div class="glass"><h2>${X.pt[cur]}</h2><dl><dt>${X.lab[0]}</dt><dd>${p.y}</dd><dt>${X.lab[1]}</dt><dd>${p.tm?X.tm:X.tbd}</dd><dt>${X.lab[2]}</dt><dd>${sz}</dd><dt>${X.lab[3]}</dt><dd>${p.tg?X.tg:X.tbd}</dd></dl><p>${X.pd[cur]}</p><div class="ctl"><button data-d="-1" aria-label="‹">‹</button><button data-d="1" aria-label="›">›</button><button data-x aria-label="✕">✕</button></div></div></div>`;
+  md.classList.add('on');requestAnimationFrame(()=>requestAnimationFrame(()=>md.classList.add('in')));
+}
+const closeM=()=>{$('#md').classList.remove('on','in')};
+
+/* ---------- EVENTS ---------- */
+function onScroll(){
+  const d=document.documentElement,f=d.scrollTop/Math.max(1,d.scrollHeight-innerHeight);
+  $('#pg').style.width=f*100+'%';d.style.setProperty('--p',f.toFixed(3));$('#up').classList.toggle('on',d.scrollTop>500);
+  const tl=$('.tl');if(tl){const r=tl.getBoundingClientRect();tl.style.setProperty('--f',Math.min(1,Math.max(0,(innerHeight*.6-r.top)/r.height)))}
+}
+addEventListener('scroll',onScroll,{passive:true});
+addEventListener('hashchange',()=>{const i=fromHash();if(i!==route){route=i;closeM();render(true)}});
+addEventListener('keydown',e=>{if(!$('#md').classList.contains('on'))return;if(e.key=='Escape')closeM();if(e.key=='ArrowLeft')openM(cur-1);if(e.key=='ArrowRight')openM(cur+1)});
+document.addEventListener('click',e=>{
+  const t=e.target,l=t.closest('[data-l]'),cd=t.closest('.card'),b=t.closest('[data-d]'),na=t.closest('a[data-r]');
+  if(na){e.preventDefault();go(+na.dataset.r);return}
+  if(l){lang=l.dataset.l;try{localStorage.setItem('lang',lang)}catch(x){}render(false);return}
+  if(t.closest('#bm'))$('#mm').classList.toggle('open');
+  if(t.closest('#mm a'))$('#mm').classList.remove('open');
+  if(t.closest('#up'))scrollTo({top:0,behavior:'smooth'});
+  if(cd)openM(+cd.dataset.i);
+  if(b)openM(cur+ +b.dataset.d);
+  if(t.closest('[data-x]')||t.id=='md')closeM();
+});
+document.addEventListener('pointermove',e=>{
+  const c=e.target.closest&&e.target.closest('.card');
+  document.querySelectorAll('.card.t').forEach(x=>{if(x!==c){x.classList.remove('t');x.style.transform=''}});
+  if(c){const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.classList.add('t');c.style.transform=`perspective(700px) rotateY(${px*14}deg) rotateX(${-py*14}deg) translateZ(8px)`}
+});
+route=fromHash();render(true);
+</script>
+</body>
+</html>
